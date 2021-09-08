@@ -1,0 +1,38 @@
+{% extends "node.html.twig" %}
+
+{#
+/**
+ * @file
+ * Theme override for a node sf-event defualt display
+ *
+ * Available variables:
+ * - Look in the node.html.twig file for available variables.
+ */
+#}
+{% block content %}
+{{ attach_library('sitefarm_one/sitefarm_one.add_to_calendar') }}
+<div{{ content_attributes.addClass('node__content') }}>
+  <div class="u-space-bottom--large">
+    {{ content.field_sf_m_primary_media }}
+  </div>
+
+  <h2 class="event__date">{{ content.field_sf_dates }}</h2>
+  <div class="add-to-calendar-button u-space-bottom--small"></div>
+  {{ content.field_sf_event_location }}
+  {{ content.field_sf_event_map_link }}
+
+  <div class="social-share">
+    {{ content.sharemessage__sf_social_share_buttons }}
+  </div>
+
+  {{ content|without(
+  'field_sf_primary_image',
+  'field_sf_m_primary_media',
+  'field_sf_dates',
+  'field_sf_event_map_link',
+  'field_sf_event_location',
+  'sharemessage__sf_social_share_buttons',
+  'field_sf_files'
+  ) }}
+</div>
+{% endblock %}
